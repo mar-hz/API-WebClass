@@ -1,12 +1,8 @@
 import { Router } from "express";
-import { marco, ping, raiz } from "../controllers/index_controller.js";
+import { login } from "../controllers/index_controller.js";
 
 const router = Router();
 
-router.get('/', raiz);
-
-router.get('/marco', marco);
-
-router.get('/ping', ping);
+router.post('/login', login);
 
 export default router;

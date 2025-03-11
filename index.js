@@ -9,6 +9,7 @@ const port = 5000;
 
 const sql = connectDB();
 
+app.use(express.json());
 app.use(indexRouter);
 app.use(usersRouter);
 
