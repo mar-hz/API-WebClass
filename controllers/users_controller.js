@@ -15,26 +15,26 @@ export const getUser = async (req, res) => {
     }
     const data = await sql.query(query);
     // console.log(data.rows);
-    res.json(data.rows);
+    res.json(data.rows[0]);
 }
 
 export const postUser = async (req, res) => {
-    const { username, first_name, last_name, birthdate, password, email } = req.body;
+    const { username, first_name, last_name, birthdate, password, email, points } = req.body;
     const sql = connectDB();
     const query = {
-        text: "insert into users(username, first_name, last_name, birthdate, password, email) values ($1, $2, $3, $4, $5, $6)",
-        values: [username, first_name, last_name, birthdate, password, email]
+        text: "insert into users(username, first_name, last_name, birthdate, password, email, points) values ($1, $2, $3, $4, $5, $6, $7)",
+        values: [username, first_name, last_name, birthdate, password, email, points]
     }
     const data = await sql.query(query);
     res.json(data.rows);
 }
 
 export const putUser = async (req, res) => {
-    const { username, first_name, last_name, birthdate, password, email } = req.body;
+    const { username, first_name, last_name, birthdate, password, email, points } = req.body;
     const sql = connectDB();
     const query = {
-        text: "update users set username=$1, first_name=$2, last_name=$3, birthdate=$4, password=$5, email=$6 where user_id=$7",
-        values: [username, first_name, last_name, birthdate, password, email, req.params.id]
+        text: "update users set username=$1, first_name=$2, last_name=$3, birthdate=$4, password=$5, email=$6, points=$7 where user_id=$8",
+        values: [username, first_name, last_name, birthdate, password, email, points, req.params.id]
     }
     const data = await sql.query(query);
     res.json(data.rows);
