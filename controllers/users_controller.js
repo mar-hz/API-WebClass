@@ -3,7 +3,7 @@ import { connectDB } from "../utils/aiven.js";
 export const getUsers = async (req, res) => {
     const sql = connectDB();
     const data = await sql.query("select * from users");
-    console.log(data.rows);
+    // console.log(data.rows);
     res.json(data.rows);
 };
 
@@ -14,7 +14,7 @@ export const getUser = async (req, res) => {
         values: [req.params.id]
     }
     const data = await sql.query(query);
-    console.log(data.rows);
+    // console.log(data.rows);
     res.json(data.rows);
 }
 
@@ -46,7 +46,7 @@ export const deleteUser = async (req, res) => {
         const query = {
             text: "delete from users where user_id=$1",
             values: [req.params.id]
-        }
+        };
         await sql.query(query);
         res.status(200).json({ msg: "borrado!" });
     } catch (error) {
