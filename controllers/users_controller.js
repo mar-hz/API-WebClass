@@ -1,4 +1,3 @@
-import e from "express";
 import { connectDB } from "../utils/aiven.js";
 
 export const getUsers = async (req, res) => {
@@ -51,6 +50,6 @@ export const deleteUser = async (req, res) => {
         await sql.query(query);
         res.status(200).json({ msg: "borrado!" });
     } catch (error) {
-        res.status(500).json({ msg: "hubo un error :(" });
+        res.status(500).json({ msg: error.msg });
     }
 }
